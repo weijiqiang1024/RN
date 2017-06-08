@@ -1,0 +1,10 @@
+.wrapper {
+    line-height: 400px;
+    text-align: center;
+    height: 400px;
+    /*background: red;*/
+}
+
+.wrapper_text {
+    margin-right: 20px;
+}
