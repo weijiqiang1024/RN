@@ -6,15 +6,16 @@ export const DECREASE = 'DECREASE';
 
 
 export function loginSubmit(param) {
+    debugger;
     return {
         type: LOGIN_SUBMIT,
         param:param
     }
 }
 
-export function decreaseClick(param) {
+export function decreaseClick() {
     return {
         type: DECREASE,
-        param:param
+        param:1
     }
 }

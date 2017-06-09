@@ -1,44 +1,90 @@
 /**
  * Created by zll on 2017/6/6.
  */
-import React, {Component, PropTypes} from 'react';
-import { Button } from 'antd';
+import React, { Component, PropTypes } from 'react';
+import { Form, Icon, Input, Button, Checkbox } from 'antd';
 
-import './login.css'; 
+import './login.css';
 
+
+const FormItem = Form.Item;
 // React component
-export default class Login extends Component {
-    static propTypes = {
-         value:PropTypes.number,
-         onIncreaseClick: PropTypes.func.isRequired,
-         onDncreaseClick: PropTypes.func.isRequired
-    };
+class Login extends Component {
 
-    componentDidMount(){
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        console.log('Received values of form: ', values);
+        this.props.onLoginClick(values);
+      }
+    });
+  }
 
-    }
+  componentDidMount() {
+  debugger;
+  console.log(this.props);
+  }
 
-    increaseClick(){
-        //const val = this.refs.keyword.value;
-        this.props.onIncreaseClick(2);
-    }
+  render() {
+    const { getFieldDecorator } = this.props.form;
+    return (
+      <div className="wrapper">
+        <div className="content">
+          <header className="content-header">Login</header>
+          <section className="content-body">
+            <Form onSubmit={this.handleSubmit} className="login-form">
+              <FormItem>
+                {getFieldDecorator('userName', {
+                  rules: [{ required: true, message: '用户名不能为空!' }],
+                })(
+                  <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="用户名" />
+                  )}
+              </FormItem>
+              <FormItem>
+                {getFieldDecorator('password', {
+                  rules: [{ required: true, message: '密码不能为!' }],
+                })(
+                  <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="密码" />
+                  )}
+              </FormItem>
+              <FormItem>
+                {getFieldDecorator('remember', {
+                  valuePropName: 'checked',
+                  initialValue: true,
+                })(
+                  <Checkbox>记住密码</Checkbox>
+                  )}
+                <a className="login-forgot" href="">忘记密码</a>
+                <Button type="primary" htmlType="submit" className="login-button">
+                  登陆
+                </Button>
+                {/* Or <a href="">register now!</a>*/}
+              </FormItem>
+            </Form>
+          </section>
+        </div>
+      </div>
 
-    dcreaseClick(){
-        this.props.onDecareaseClick(1);
-    }
+    );
+  }
+  // render() {
+  //     const { value ,onIncreaseClick ,onDecareaseClick} = this.props;
+  //     debugger;
+  //     return (
+  //         <div className="wrapper">
+  //             <span className="wrapper_text" ref="keyword">当前：{value}</span>   
+  //             <Button type="primary" onClick={onIncreaseClick}>Increase</Button>
+  //             <Button type="danger" onClick={onDecareaseClick}>Dcrease</Button>
+  //         </div>
+  //     )
+  // }
 
-    render() {
-        
-        debugger;
-        return (
-            <div className="wrapper">
-                <span className="wrapper_text" ref="keyword">当前：{this.props.value}</span>   
-                <Button type="primary" onClick={this.increaseClick.bind(this)}>Increase</Button>
-                <Button type="danger" onClick={this.dcreaseClick.bind(this)}>Dcrease</Button>
-            </div>
-        )
-    }
 }
+
+Login = Form.create()(Login);
+
+export default Login;
 
 
 

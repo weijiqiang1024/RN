@@ -81,9 +81,11 @@ function* load() {
     }
 }
 export default function* rootSaga() {
+    debugger;
     while (true) {
         yield take('LOGIN_SUBMIT');
-        debugger;
+        debugger
+        yield fork(load); 
         yield take('DECREASE');
         yield fork(load);
     }

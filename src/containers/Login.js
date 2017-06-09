@@ -10,19 +10,22 @@ import Login from '../components/Login';
 
 // Map Redux state to component props
 function mapStateToProps(state) {
+    debugger;
     return {
-        value: state.Login.count
+        values: state.Login.values
     }
 }
 
 // Map Redux actions to component props
 function mapDispatchToProps(dispatch) {
-    //debugger;
+    debugger;
     return {
-        onIncreaseClick: (p) => {
+        onLoginClick: (p) => {
+            debugger;
             dispatch(loginSubmit(p))},
-        onDecareaseClick: (p) => {
-            dispatch(decreaseClick(p))}
+
+        onDecareaseClick: () => {
+            dispatch(decreaseClick())}
     }
 }
 

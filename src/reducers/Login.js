@@ -5,16 +5,17 @@ import { loginSubmit, LOGIN_SUBMIT ,decreaseClick, DECREASE} from '../actions/Lo
 
 const initalState = {
     param: 0,
-    count: 0
+    values: {}
 };
 
 export default function Login(state = initalState, action) {
-    const count = state.count;
+    debugger;
+    const values = state.values;
     switch (action.type) {
         case LOGIN_SUBMIT:
-            return { count: count + action.param };
+            return { values:action.param };
         case DECREASE:
-            return { count: count - action.param };
+            // return { count: count - action.param };
         default:
             return state;
     }

@@ -12,6 +12,7 @@ const loggerMiddleware = createLogger();
 const sagaMiddleware = createSagaMiddleware();
 
 export default function Store(initialState) {
+    debugger;
     const store = createStore(
         FullReducers,
         initialState,
